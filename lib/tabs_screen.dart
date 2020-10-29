@@ -5,7 +5,6 @@ import 'financescreen.dart';
 import 'package:provider/provider.dart';
 import 'add_transact.dart';
 import 'auth_provider.dart';
-import 'package:finance_manager/loginscreen.dart';
 import 'home.dart';
 import 'dart:io';
 import 'auth.dart';

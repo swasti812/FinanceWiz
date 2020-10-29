@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'loginscreen.dart';
-import 'auth_service.dart';
+
+
 import 'package:provider/provider.dart';
 
 import 'models/preference.dart';

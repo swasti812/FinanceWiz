@@ -7,7 +7,6 @@ import 'package:intl/intl.dart';
 import 'auth.dart';
 import 'package:provider/provider.dart';
 import 'models/preference.dart';
-import 'loginscreen.dart';
 import 'category_items.dart';
 import 'new_transaction.dart';
 import 'models/transaction.dart';

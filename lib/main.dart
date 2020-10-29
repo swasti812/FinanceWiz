@@ -1,21 +1,19 @@
-import 'package:finance_manager/auth_service.dart';
+
 import 'package:finance_manager/category_transaction.dart';
 import 'package:finance_manager/financescreen.dart';
-import 'package:finance_manager/loginpagenew.dart';
+
 import 'package:finance_manager/models/preference.dart';
 import 'package:finance_manager/resetscreen.dart';
 import 'package:finance_manager/root_page.dart';
-import 'package:finance_manager/signupscreen.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:provider/provider.dart';
-import 'loginscreen.dart';
+
 import 'tabs_screen.dart';
 import 'auth.dart';
-import 'signupnew.dart';
-import 'loginpagenew.dart';
+
 import 'login_page.dart';
 import 'auth_provider.dart';
 

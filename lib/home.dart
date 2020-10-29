@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:finance_manager/loginscreen.dart';
+
 import 'package:finance_manager/models/locator.dart';
 import 'package:finance_manager/models/user.dart';
 import 'package:flutter/material.dart';
@@ -52,23 +52,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
     final BaseAuth auth = AuthProvider.of(context).auth;
      //String uid= await context.read<AuthServuc>().getCurrentUID();
     final uid = await auth.currentUser();
+    //print(uid);
       DocumentSnapshot ds= await FirebaseFirestore.instance.collection('users').doc(uid).get();
       print('LALALALALALALAL');
       name=ds.data()['name'];
+      return name;
       //return name;//collection('userinfo').where('uid',isEqualTo: uid).snapshots();
   }
-  @override
-  void setState(fn) {
-    uidfunction();
-
-  }
-/*  void namefunction() async{
-
-    DocumentSnapshot ds = await
-    Firestore.instance.collection('users').doc(uid).collection('userinfo').where('uid').get();
-    name = ds.data['name']
-  }
- */
   @override
   Widget build(BuildContext context) {
 
@@ -117,45 +107,42 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
                               SizedBox(
                                 height: 10,
                               ),
-                              /*FutureBuilder(
-                                future: FlutterSession().get('token'),
-                                builder:(context,usertoken) {
-                                  print('WFTWFTWFTWFTWFWTFWTFWTW'+usertoken.data);
-                                  String title;
-                                DocumentReference docref= FirebaseFirestore.instance.collection('register').doc(usertoken.data.toString());
-                                docref.get().then((datasnapshot){
-                                  print(datasnapshot.data()['name'].toString());
-                                  return Text(datasnapshot.data()['name'].toString(),
-                                    style: TextStyle(
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.w800,
-                                        color: Colors.white),
-                                    softWrap: true,);
-                                }
-                                  );
 
-                                print('wftfwtfwtfwtwftwfw '+title);*/
+                              FutureBuilder(
+    future: uidfunction(),
+    builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+      if (name != null) {
+        return Text(name,
+          style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w800,
+              color: Colors.white),
+          softWrap: true,);
+      }
+      else{
+        return Text('user',
+          style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w800,
+              color: Colors.white),
+          softWrap: true,);
 
+    }
+      }
+    ),
+
+                              
+                              
+/*
                                  Text("",
-        style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.w800,
-            color: Colors.white),
-        softWrap: true,),
+    style: TextStyle(
+    fontSize: 30,
+    fontWeight: FontWeight.w800,
+    color: Colors.white),
+    softWrap: true,),*/
 
 
 
-                                  //DocumentReference docref =Firestore.instance.collection('register').('email',isEqualTo: usertoken.data.toString());
-                                  //docref.get().then((datasnapshot) => name= datasnapshot.data()["name"].toString());
-                                  /*return Text(
-                                    'sample'
-                                  ,
-                                  style: TextStyle(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w800,
-                                  color: Colors.white),
-                                  softWrap: true,);
-                                } ),*/
 
                             ],
                           ),
