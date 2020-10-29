@@ -1,115 +1,4 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:finance_manager/models/database.dart';
-import 'package:finance_manager/models/user.dart';
-import 'package:finance_manager/resetscreen.dart';
-import 'package:finance_manager/signupscreen.dart';
-import 'package:finance_manager/tabs_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_session/flutter_session.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'financescreen.dart';
-import 'models/auth_repo.dart';
-import 'models/locator.dart';
-import 'models/preference.dart';
-
-
-class LoginScreen extends StatefulWidget {
-  static const routeName = '/login'; 
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-final _scaffoldKey = GlobalKey<ScaffoldState>();
-GlobalKey<FormState> validatekey = GlobalKey<FormState>();
-
-class _LoginScreenState extends State<LoginScreen> {
-  bool passwordVisible = true;
-
-  
-  var  nameController = TextEditingController();
-  var passwordController = TextEditingController();
-AuthRepo _authRepo= AuthRepo();
-  Database databaseMethods = Database();
-  QuerySnapshot usersnapshot;
-  bool isLoading = false;
-  String val;
-  bool validateAndSave() {
-    final FormState form = validatekey.currentState;
-    if (form.validate()) {
-      form.save();
-      return true;
-    }
-    return false;
-  }
-
-  void _showErrorDialog(String msg){
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text('An error occured'),
-        content: Text(msg),
-        actions: <Widget>[
-          FlatButton(
-          onPressed: (){
-            Navigator.of(ctx).pop();
-          },
-          child: Text('Okay')
-          )
-        ],
-      ),
-    );
-  }
- void _login(String email, String pass) async {
-    if (validatekey.currentState.validate()) {
-      setState(() {
-        isLoading = true;
-      });
-
-      await _authRepo.signInWithEmailAndPassword(email, pass)
-          .then((value) async {
-   
-        databaseMethods.getUserByEmail(email).then((uservalue) {
-          usersnapshot = uservalue;
-          UserInfo user = UserInfo(
-              name: usersnapshot.documents[0].data()["name"], email: email);
-          if (value != null) {
-            setState(() {
-              isLoading = true;
-            });
-            var session =FlutterSession();
-            session.set("token",user.email);
-            HelperFunctions.saveUserLoggedInSharedPreference(true);
-            HelperFunctions.saveUserNameSharedPreference(user.name);
-            print(user.name);
-            print(user.email);
-
-            HelperFunctions.saveUserEmailSharedPreference(email);
-            Navigator.pushAndRemoveUntil(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (BuildContext
-                                                            context) =>
-                                                       TabScreen()),
-                                                ModalRoute.withName('/'),
-                                              );
-          }
-        }
-
-        );
-      }).catchError((onError){
-switch(onError.toString()){
-   case 'PlatformException(ERROR_NETWORK_REQUEST_FAILED, A network error (such as timeout, interrupted connection or unreachable host) has occurred., null)':
-       var val= "Check your connection!";
-       _showErrorDialog(val);
-       break;
-    default: var val= "Something went wrong!";
-      _showErrorDialog(val);
-      }
-    }
-
-      );
-      
-      }}
   // void _login(String email, String pass) async{
   //   if (validatekey.currentState.validate()) {
   //     setState(() {
@@ -138,7 +27,7 @@ switch(onError.toString()){
   //   }
     
   // }
-  _displaySnackBar(BuildContext context, String a) {
+  /*_displaySnackBar(BuildContext context, String a) {
       final snackBar = SnackBar(
         content: Text(a,
             style: TextStyle(
@@ -319,10 +208,10 @@ switch(onError.toString()){
                   textColor: Colors.white,
                 ),
                 SizedBox(height: 100),
-                /*Align(
+                *//*Align(
                   alignment: Alignment.bottomCenter,
                   child: _buildFooterLogo(),
-                )*/
+                )*//*
               ],
             ),
           ),
@@ -330,24 +219,9 @@ switch(onError.toString()){
       );
   }
 
-  _buildFooterLogo() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Image.asset(
-          'images/splash-image.png',
-          height: 40,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left:15.0),
-          child: Text('The Finance Manager',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.openSans(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold)),
-        ),
+
       ],
     );
   }
 }
+*/

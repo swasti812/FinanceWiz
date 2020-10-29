@@ -9,7 +9,10 @@ import 'package:flutter_session/flutter_session.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_manager/models/database.dart';
-import 'models/auth_repo.dart';
+
+import 'auth_provider.dart';
+import 'auth.dart';
+
 import 'profile_screen.dart';
 import 'package:intl/intl.dart';import 'models/preference.dart';
 import 'models/user_controller.dart';
@@ -25,12 +28,12 @@ class HomeScreen extends StatefulWidget{
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
 
-  void logout() async {
+ /* void logout() async {
     HelperFunctions.saveUserLoggedInSharedPreference(false);
     Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => LoginScreen()),
+        MaterialPageRoute(builder: (context) => ),
             (Route<dynamic> route) => false);
-  }
+  }*/
   /*dynamic title;
   void fetch() async {
     title = await FlutterSession().get("token").toString();}*/
@@ -40,13 +43,35 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
 // UserModel _currentUser = locator.get<UserController>().currentUser;
 
   File _image;
-
+  String name;
   final Color primaryColor = Color(0xff18203d);
   final Color secondaryColor = Color(0xFFB388FF);
   final Color logoGreen = Color(0xFF7C4DFF);
-  String name;
+  Future<String> uidfunction() async{
+      //String uid = await auth.
+    final BaseAuth auth = AuthProvider.of(context).auth;
+     //String uid= await context.read<AuthServuc>().getCurrentUID();
+    final uid = await auth.currentUser();
+      DocumentSnapshot ds= await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      print('LALALALALALALAL');
+      name=ds.data()['name'];
+      //return name;//collection('userinfo').where('uid',isEqualTo: uid).snapshots();
+  }
+  @override
+  void setState(fn) {
+    uidfunction();
+
+  }
+/*  void namefunction() async{
+
+    DocumentSnapshot ds = await
+    Firestore.instance.collection('users').doc(uid).collection('userinfo').where('uid').get();
+    name = ds.data['name']
+  }
+ */
   @override
   Widget build(BuildContext context) {
+
 
 
 
@@ -110,7 +135,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
                                   );
 
                                 print('wftfwtfwtfwtwftwfw '+title);*/
-                                 Text('Jennifer',
+
+                                 Text("",
         style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.w800,
@@ -502,6 +528,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
         ),
       ),
     );
+
   }
+
 }
 

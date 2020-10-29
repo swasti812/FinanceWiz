@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'auth_service.dart';
 import 'package:provider/provider.dart';
 class SignUpView extends StatefulWidget {
@@ -18,8 +18,8 @@ class _SignUpViewState extends State<SignUpView> {
   bool passwordVisible = true;
   bool pass = true;
 
-  @override
-  Widget build(BuildContext context) {
+  @override*/
+/*  Widget build(BuildContext context) {
     _displaySnackBar(BuildContext context, String a) {
       final snackBar = SnackBar(
         content: Text(a,
@@ -48,12 +48,10 @@ class _SignUpViewState extends State<SignUpView> {
     'Sign Up',
     textAlign: TextAlign.center,
         ),
-    /*SizedBox(
-                  height: 50,
-                )*/
-    SizedBox(height: 20),
 
-    Container(
+    SizedBox(height: 20),*/
+
+  /*  Container(
     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
     child: Column(
     children: <Widget>[
@@ -88,8 +86,8 @@ class _SignUpViewState extends State<SignUpView> {
     border: OutlineInputBorder(
     borderSide: BorderSide(
     color: secondaryColor),
-    ),
-    contentPadding: EdgeInsets.symmetric(horizontal: 10),
+    ),*/
+    /*contentPadding: EdgeInsets.symmetric(horizontal: 10),
     labelText: 'Email',
     hintText: "Email",
     labelStyle: TextStyle(color: Colors.white),
@@ -147,8 +145,8 @@ class _SignUpViewState extends State<SignUpView> {
     labelStyle: TextStyle(color: Colors.white),
     suffixIcon: IconButton(
     icon: Icon(
-    pass
-    ? Icons.visibility_off
+    pass*/
+    /*? Icons.visibility_off
         : Icons.visibility,
     color: Colors.white,
     ),
@@ -208,8 +206,10 @@ class _SignUpViewState extends State<SignUpView> {
       context.read<AuthService>().CreateUserWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
-        name: nameController.text
+        name: nameController.text,
+        context: context,
       );
+
     }
 
     },
@@ -220,3 +220,4 @@ class _SignUpViewState extends State<SignUpView> {
     )])
     )));}
 }
+*/

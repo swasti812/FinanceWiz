@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+/*import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:finance_manager/loginscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:finance_manager/models/auth_repo.dart';
@@ -147,7 +147,7 @@ setState(() {
   
 
 
-  }
+  }*/
 
 
 
@@ -217,7 +217,7 @@ setState(() {
   //   }
   // }
 
-  final Color primaryColor = Color(0xff18203d);
+  /*final Color primaryColor = Color(0xff18203d);
   final Color secondaryColor = Color(0xff232c51);
   final Color logoGreen = Color(0xff25bcbb);
 
@@ -257,9 +257,9 @@ setState(() {
                   style:
                       GoogleFonts.openSans(color: Colors.white, fontSize: 28),
                 ),
-                /*SizedBox(
+                *//*SizedBox(
                   height: 50,
-                )*/
+                )*//*
                 SizedBox(height: 20),
                 
                 Container(
@@ -494,24 +494,10 @@ if(passwordController.text.length!=confirmController.text.length)
         ));
   }
 
-  _buildFooterLogo() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Image.asset(
-          'images/splash-image.png',
-          height: 40,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 15.0),
-          child: Text('The Finance Manager',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.openSans(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold)),
+
         ),
       ],
     );
   }
-}
+}}
+*/

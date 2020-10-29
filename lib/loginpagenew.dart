@@ -1,4 +1,4 @@
-import 'auth_service.dart';
+/*import 'auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,17 +19,19 @@ class SignInPage extends StatelessWidget {
           ),
           TextField(
             controller: passwordController,
-            decoration: InputDecoration(
-              labelText: "Password",
+            decoration: InputDecoration(*/
+       /*       labelText: "Password",
             ),
           ),
           RaisedButton(
             onPressed: () {
               context.read<AuthService>().SignInWithEmailandPassword(
-                email: emailController.text.trim(),
-                password: passwordController.text.trim(),
+                emailController.text.trim(),
+                 passwordController.text.trim(),
+                 context ,
 
               );
+
             },
             child: Text("Sign in"),
           )
@@ -37,4 +39,4 @@ class SignInPage extends StatelessWidget {
       ),
     );
   }
-}
+}*/

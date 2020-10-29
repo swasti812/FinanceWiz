@@ -1,23 +1,22 @@
-  
-import 'package:finance_manager/models/user.dart';
+/*import 'package:finance_manager/models/user.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_session/flutter_session.dart';
+import 'package:flutter_session/flutter_session.dart';*/
 // class User{
 
 //   String userId;
 
 //   User({this.userId});
 // }
-class AuthRepo {
+/*class AuthRepo {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-  final FirebaseAuth _auth= FirebaseAuth.instance;
+  final FirebaseAuth _auth= FirebaseAuth.instance;*/
 // User _userFromFirebaseUser(FirebaseUser user){
 // return user != null ? User(userId: user.uid): null;
 // }
 
 
-  Future<void> signInWithGoogle() async {
+  /*Future<void> signInWithGoogle() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication googleAuth =
         await googleUser.authentication;
@@ -42,11 +41,11 @@ class AuthRepo {
 
   Future signInWithEmailAndPassword(String email, String pass) async{
     final UserCredential authResult =await _auth.signInWithEmailAndPassword(email: email, password: pass);
-  final User user= authResult.user;
+  final User user= authResult.user;*/
    //final UserInfo curruser= ;
-    /*var session =FlutterSession();
-    await session.set("token",user.uid);*/
-    //await session.set("name",user.displayName);
+  /*  var session =FlutterSession();
+    await session.set("token",user.uid);
+
     print("signed in " + user.uid);
 
 
@@ -56,16 +55,16 @@ class AuthRepo {
 
 }
 Future signUpwithEmailAndPassword(String email, String pass)async{
-  final UserCredential authResult =
+   UserCredential authResult =
   await _auth.createUserWithEmailAndPassword(email: email, password: pass);
   User user = authResult.user;
-       return user;
+        user;
 
        
 
 }
 Future resetPass(String email) async{
- 
+
 
   return await _auth.sendPasswordResetEmail(email: email);
 
@@ -80,3 +79,4 @@ Future signOut()async{
   }
 }
 }
+*/

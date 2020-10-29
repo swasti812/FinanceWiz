@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'loginscreen.dart';
+import 'auth_service.dart';
+import 'package:provider/provider.dart';
 
 import 'models/preference.dart';
 class UserScreen extends StatefulWidget {
@@ -10,10 +12,8 @@ class UserScreen extends StatefulWidget {
 
 class _UserScreenState extends State<UserScreen> {
   void logout() async {
-    HelperFunctions.saveUserLoggedInSharedPreference(false);
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => LoginScreen()),
-            (Route<dynamic> route) => false);}
+    //context.read<AuthService>().signOut();
+  }
 
   Widget build(BuildContext context) {
     return
