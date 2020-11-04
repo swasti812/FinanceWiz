@@ -20,7 +20,7 @@ class Auth implements BaseAuth {
 
   Future<String> createUser(String email, String password, String name) async {
     User user = (await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password)).user;
-    additionalinfo(name, user.uid);
+    additionalinfo(name, user.uid,email);
     return user.uid;
   }
 
@@ -33,9 +33,13 @@ class Auth implements BaseAuth {
     return _firebaseAuth.signOut();
   }
 
-  void additionalinfo(String name,String uid) async
+  void additionalinfo(String name,String uid,String email) async
   { Map<String,dynamic> user={'name':name,
-    'uid':uid};
+    'uid':uid,
+  'email': email,
+  'income':"na",
+    'expenses':"0"
+  };
   await FirebaseFirestore.instance.collection('users').doc(uid).set(user);
 
   }

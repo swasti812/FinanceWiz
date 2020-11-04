@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'Piechart.dart';
 import 'package:finance_manager/models/locator.dart';
 import 'package:finance_manager/models/user.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
   }
   @override
   Widget build(BuildContext context) {
-
+    final BaseAuth auth = AuthProvider.of(context).auth;
 
 
 
@@ -188,8 +188,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
 
                             Container(
                               height: 120,
-                              child: StreamBuilder( stream:FirebaseFirestore.instance.collection("Transaction").orderBy('date',descending:true).where(('date'),isLessThanOrEqualTo: new DateTime.now()).limit(10).snapshots(),
 
+                              child: StreamBuilder(
+    stream: getUserTransactions(context, auth),//stream:FirebaseFirestore.instance.collection("Transaction").orderBy('date',descending:true).where(('date'),isLessThanOrEqualTo: new DateTime.now()).limit(10).snapshots(),
+//stream:FirebaseFirestore.instance.collection('userdata').doc(uid).collection('transactions').orderBy('date',descending:true).where(('date'),isLessThanOrEqualTo: new DateTime.now()).limit(10).snapshots(),
     builder: (context,snapshot){
     if(snapshot.hasData){
     return ListView.builder(itemCount: snapshot.data.documents.length,
@@ -254,6 +256,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
                           SizedBox(
                             height: 20,
                           ),
+
                           buildCategoryCard(Icons.fastfood, "Food", 120, 20),
                           buildCategoryCard(Icons.flash_on, "Utilities", 430, 17),
                           buildCategoryCard(Icons.fastfood, "Food", 120, 20),
@@ -516,6 +519,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin{
       ),
     );
 
+
+  }
+  
+
+  Stream<QuerySnapshot> getUserTransactions(BuildContext context,BaseAuth auth) async*{
+    //final uid= await context.read<Auth>()currentUser();
+    final uid = await auth.currentUser();
+    yield* FirebaseFirestore.instance.collection('userdata').doc(uid).collection('transactions').orderBy('date',descending:true).where(('date'),isLessThanOrEqualTo: new DateTime.now()).limit(10).snapshots();
+    //yield* Firestore.instance.collection('userdata').doc(uid).collection('transactions').where('category', isEqualTo:category).snapshots();
   }
 
 }

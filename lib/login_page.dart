@@ -83,6 +83,7 @@ class _LoginPageState extends State<LoginPage> {
     switch(_formType){
       case FormType.login:
         return[
+          new Image.network('https://image.freepik.com/free-vector/financial-it-audit-concept_107173-16654.jpg'),
           new TextFormField(
             key: new Key('email'),
             decoration: new InputDecoration(labelText: 'Email'),
@@ -103,6 +104,8 @@ class _LoginPageState extends State<LoginPage> {
 
       case FormType.register:
     return [
+      new Image.network('https://image.freepik.com/free-vector/cheerful-people-investing-finance-illustration_179970-606.jpg'),
+
        new TextFormField(
         key: new Key('email'),
         decoration: new InputDecoration(labelText: 'Email'),
@@ -133,28 +136,33 @@ class _LoginPageState extends State<LoginPage> {
     switch (_formType) {
       case FormType.login:
         return [
-          new FlatButton(
+          new SizedBox(height: 20,),
+          new RaisedButton(
               key: new Key('login'),
-              child: new Text("login"),
+              child: new Text("Login"),
+              color: Colors.grey,
               onPressed: validateAndSubmit
           ),
-          new FlatButton(
+          new RaisedButton(
               key: new Key('need-account'),
               child: new Text("Need an account? Register"),
+              color: Colors.grey,
               onPressed: moveToRegister
           ),
         ];
       case FormType.register:
         return [
-          new FlatButton(
+          new RaisedButton(
               key: new Key('register'),
-              child: new Text("Create new acc"),
+              child: new Text("Sign Up"),
+              color: Colors.grey,
 
               onPressed: validateAndSubmit
           ),
-          new FlatButton(
+          new RaisedButton(
               key: new Key('need-login'),
               child: new Text("Have an account? Login"),
+              color: Colors.grey,
               onPressed: moveToLogin
           ),
         ];
@@ -179,11 +187,14 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text('FinanaceWiz'),
+          title: Center(child: new Text('FinanceWiz')),
+
         ),
-        backgroundColor: Colors.grey[300],
+        backgroundColor:
+    Color(0xff18203d),
+
         body: new SingleChildScrollView(child: new Container(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(30.0),
             child: new Column(
                 children: [
                   new Card(
@@ -196,13 +207,16 @@ class _LoginPageState extends State<LoginPage> {
                                     key: formKey,
                                     child: new Column(
                                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                                      children: usernameAndPassword() + submitWidgets(),
+                                      children: usernameAndPassword() +submitWidgets(),
                                     )
                                 )
                             ),
                           ])
                   ),
-                  hintText()
+                  hintText(),
+
+
+
                 ]
             )
         ))

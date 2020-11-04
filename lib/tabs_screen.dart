@@ -1,5 +1,4 @@
 import 'package:finance_manager/paymentscreen.dart';
-import 'package:finance_manager/profile.dart';
 import 'package:flutter/material.dart';
 import 'financescreen.dart';
 import 'package:provider/provider.dart';

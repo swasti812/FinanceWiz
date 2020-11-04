@@ -73,8 +73,9 @@ class _NewTransactionState extends State<NewTransaction> {
                     minWidth: double.maxFinite,
                     height: 50,
                   onPressed:() async{
-                      final uid= await auth.currentUser();//context.read<AuthService>().getCurrentUID();
-
+                    final uid= await auth.currentUser();//context.read<AuthService>().getCurrentUID();
+                      /*DocumentSnapshot ds= await FirebaseFirestore.instance.collection('userdata').doc(uid).collection('amounts').doc(widget.category).get();
+                      int initial= ds.data()['amount'];*/
                       Map <String, dynamic> transaction ={
                         "title":titleController.text,
                         "amount":amountController.text,
@@ -83,8 +84,14 @@ class _NewTransactionState extends State<NewTransaction> {
                         "date": DateTime.now(),
                         //"user":userid,
                       };
+                     /* int amount =int.parse(amountController.text);
+                      Map<String,dynamic> categories={
+                        "amount":amount+initial
+                      };*/
                       print(uid);
-                      await db.collection('userdata').doc(uid).collection('transactions').add(transaction);
+                      await db.collection('userdata').doc(uid).collection(widget.category+'transactions').add(transaction);
+                     /* await db.collection('userdata').doc(uid).collection('amounts').doc(widget.category).update(categories);*/
+                      //await db.collection('userdata').doc(uid).collection('total').add(transaction);
                       //documentReference.set(transaction).whenComplete(() => print("created"));
                   //widget.addTX(titleController.text, double.parse(amountController.text));
                   Navigator.of(context).pop();
